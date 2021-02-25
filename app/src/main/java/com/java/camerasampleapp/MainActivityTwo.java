@@ -101,14 +101,20 @@ public class MainActivityTwo extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if (data != null) {
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                mImageView.setImageBitmap(imageBitmap);
-            }
-            else {
-                Toast.makeText(MainActivityTwo.this,"Data null",Toast.LENGTH_LONG).show();
-            }
+            setPic();
+//            galleryAddPic();
+
+
+
+
+//            if (data != null) {
+//                Bundle extras = data.getExtras();
+//                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                mImageView.setImageBitmap(imageBitmap);
+//            }
+//            else {
+//                Toast.makeText(MainActivityTwo.this,"Data null",Toast.LENGTH_LONG).show();
+//            }
         }else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -149,6 +155,7 @@ public class MainActivityTwo extends AppCompatActivity {
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
+        mImageView.setImageURI(contentUri);
     }
 
     private void setPic() {
